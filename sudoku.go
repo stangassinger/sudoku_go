@@ -5,24 +5,17 @@ import "fmt"
 type  T_Sudoku_T   [81]int
 
 /*
-fn pretty_print(sudoku_ar: SudokuArType) {
-	let line_sep = "------+------+------";
-	println!("{}", line_sep);
-	for i in 0..sudoku_ar.len() {
-	    print!("{} ", sudoku_ar[i]);
-	    if (i + 1) % 3 == 0 && !((i + 1) % 9 == 0) {
-		print!("| ");
-	    }
-	    if (i + 1) % 9 == 0 {
-		println!(" ");
-	    }
-	    if (i + 1) % 27 == 0 {
-		println!("{}", line_sep);
-	    }
-	}
-    }
+fn solve(sudoku_ar: &mut SudokuArType) -> bool {
+    place_number(0, sudoku_ar)
 }
 */
+
+
+
+func solve( sudoku_ar *T_Sudoku_T ) bool {
+return false
+} 
+
 
 func pretty_print(sudoku_ar *T_Sudoku_T) {
 	line_sep := "------+------+------";
@@ -53,5 +46,9 @@ func main() {
 	}
 	fmt.Println(sudoku_ar) 
 
-	pretty_print( &sudoku_ar )
+	if solve( &sudoku_ar ) == false {
+        fmt.Println( "Unsolvable" )
+    } else {
+        pretty_print( &sudoku_ar )
+    }
 }
