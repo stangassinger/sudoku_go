@@ -5,15 +5,66 @@ import "fmt"
 type  T_Sudoku_T   [81]int
 
 /*
-fn solve(sudoku_ar: &mut SudokuArType) -> bool {
-    place_number(0, sudoku_ar)
+fn check_validity(val: u8, x: usize, y: usize, sudoku_ar: &mut SudokuArType) -> bool {
+    for i in 0..=8 {
+        if (sudoku_ar[y * 9 + i] == val) || (sudoku_ar[i * 9 + x] == val) {
+            return false;
+        }
+    }
+
+    let startx: usize = (x / 3) * 3;
+    let starty: usize = (y / 3) * 3;
+    for i in starty..=(starty + 2) {
+        for j in startx..=(startx + 2) {
+            if sudoku_ar[i * 9 + j] == val {
+                return false;
+            }
+        }
+    }
+    true
 }
 */
+
+func check_validity( val int, x int, y int, sudoku_ar *T_Sudoku_T ) bool {
+    return true;
+}	
+
+
+
+func place_number( pos int, sudoku_ar *T_Sudoku_T ) bool {
+	var ret bool
+	if pos == 81 {
+        return true
+	}
+	
+	if sudoku_ar[pos] > 0 {
+        ret = place_number(pos + 1, sudoku_ar);
+        if ret == true {
+            return true
+        } else {
+            return false
+		}
+	}	
+
+	for n := 1; n <= 9; n++ {
+        if check_validity(n, pos % 9, pos / 9, sudoku_ar) == true {
+			sudoku_ar[pos] = n;
+			ret = place_number(pos + 1, sudoku_ar);
+			if ret == true {
+				return true;
+			}
+			sudoku_ar[pos] = 0;
+		}
+	}  
+	return false		
+    
+}	
+
 
 
 
 func solve( sudoku_ar *T_Sudoku_T ) bool {
-return false
+	return place_number( 0, sudoku_ar )
 } 
 
 
