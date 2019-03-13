@@ -27,10 +27,20 @@ fn pretty_print(sudoku_ar: SudokuArType) {
 func pretty_print(sudoku_ar *T_Sudoku_T) {
 	line_sep := "------+------+------";
 	fmt.Println( line_sep )
-	for _, v := range *sudoku_ar {
-	        fmt.Print ( v )
+	for i, v := range *sudoku_ar {
+			fmt.Print ( v , " " )
+			if (i + 1) % 3 == 0 || (i + 1) % 9 == 0 {
+				fmt.Print("| ");
+			} 
+			
+			if (i + 1) % 9 == 0 {
+				fmt.Println(" ");
+			}
+			
+			if (i + 1) % 27 == 0 {
+					fmt.Println( line_sep);
+			}
 	}
-	fmt.Println( line_sep )
 }
 
 
