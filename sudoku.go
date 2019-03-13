@@ -4,28 +4,25 @@ import "fmt"
 
 type  T_Sudoku_T   [81]int
 
-/*
-fn check_validity(val: u8, x: usize, y: usize, sudoku_ar: &mut SudokuArType) -> bool {
-    for i in 0..=8 {
-        if (sudoku_ar[y * 9 + i] == val) || (sudoku_ar[i * 9 + x] == val) {
+
+
+func check_validity( val int, x int, y int, sudoku_ar *T_Sudoku_T ) bool {
+	for i := 0; i <= 8; i++ {
+		if (sudoku_ar[y * 9 + i] == val) || (sudoku_ar[i * 9 + x] == val) {
             return false;
         }
-    }
+	}	
 
-    let startx: usize = (x / 3) * 3;
-    let starty: usize = (y / 3) * 3;
-    for i in starty..=(starty + 2) {
-        for j in startx..=(startx + 2) {
+	startx := (x / 3) * 3
+    starty := (y / 3) * 3
+    for i := starty; i <= (starty + 2); i++ {
+        for j := startx; j <= (startx + 2); j++ {
             if sudoku_ar[i * 9 + j] == val {
                 return false;
             }
         }
     }
-    true
-}
-*/
 
-func check_validity( val int, x int, y int, sudoku_ar *T_Sudoku_T ) bool {
     return true;
 }	
 
@@ -95,8 +92,9 @@ func main() {
         1, 0, 7, 0, 0, 2, 3, 0, 5, 0, 0, 0, 9, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0,
         0, 7, 0, 0, 1, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 6, 0, 4, 0,
 	}
-	fmt.Println(sudoku_ar) 
-
+	fmt.Println( "  ---- Sudoku ----  " )
+	pretty_print( &sudoku_ar )
+    fmt.Println( "Solving..." )
 	if solve( &sudoku_ar ) == false {
         fmt.Println( "Unsolvable" )
     } else {
